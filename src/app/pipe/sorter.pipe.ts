@@ -13,15 +13,17 @@ export class SorterPipe implements PipeTransform {
    */
   transform(value: any[], key: string): any[] {
     // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    return value;
+    // return value;
 
     /**
      * FELADAT!
      * Ellenőrzés: ha a value nem tömb vagy nincs megadva a key,
      * térj vissza a value változóval.
      */
-
-
+    if (!(value instanceof Array) || key == null)
+    {
+      return value;
+    }
 
     /**
      * FELADAT!
@@ -33,7 +35,36 @@ export class SorterPipe implements PipeTransform {
      *  összehasonlításának az eredményével.
      */
 
+    let result: Array<any> = value.sort((ao, bo) => {
+      let a: any = ao[key];
+      let b: any = bo[key];
 
+      if ((typeof a == 'number') && (typeof b == 'number'))
+      {
+        if (a > b)
+        {
+          return 1;
+        }
+        else
+        {
+          if (a == b)
+          {
+            return 0;
+          }
+          else
+          {
+            return -1;
+          }
+        }
+      }
+
+      let as = String(a).toLowerCase();
+      let bs = String(b).toLowerCase();
+
+      return as.localeCompare(bs);
+    });
+
+    return result;
   }
 
 }

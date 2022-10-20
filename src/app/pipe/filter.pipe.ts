@@ -13,15 +13,17 @@ export class FilterPipe implements PipeTransform {
    */
   transform(value: any[], phrase: string, key: string = ''): any {
     // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    return value;
+    // return value;
 
     /**
      * FELADAT!
      * Ellenőrzés: ha a value nem tömb, vagy nincs megadva a phrase vagy a key,
      * térj vissza a value változóval.
      */
-
-
+    if (!(value instanceof Array) || phrase == null || key == null)
+    {
+      return value;
+    }
 
     /**
      * FELADAT!
@@ -31,7 +33,13 @@ export class FilterPipe implements PipeTransform {
      * TIPP: az összehasonlítás előtt a két értéket alakítsd kisbetűsre.
      */
 
+debugger
 
+    let result: any[] = value.filter((x) => {
+      return String(x[key]).toLowerCase().includes(phrase.toLowerCase())
+    });
+
+    return result;
   }
 
 }

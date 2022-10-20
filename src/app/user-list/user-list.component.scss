@@ -4,3 +4,10 @@
   1. Ha az egeret fölé viszik, legyen a háttérszíne halványszürke.
   2. Ha az egeret fölé viszik, jelenjen meg a mutató kurzor.
 */
+th {
+  background: lightgray;
+}
+
+th:hover {
+  cursor: pointer;
+}
